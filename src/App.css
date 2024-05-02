@@ -5,24 +5,47 @@
 }
 
 #root {
-  max-width: 1280px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--primary-color);
 }
 
 :root {
-  --standard-gap: clamp(1rem, 0.2rem + 2vw, 2rem);
-  --standard-padding: clamp(1rem, 0.2rem + 2vw, 2rem);
+  --standard-gap: clamp(1rem, 0.2rem + 2vw, 1.5rem);
+  --small-padding: clamp(0.5rem, 0.2rem + 2vw, 1rem);
+  --standard-padding: clamp(0.5rem, 0.2rem + 2vw, 2rem);
   --standard-margin: clamp(1rem, 0.2rem + 2vw, 2rem);
+  --primary-color: #f4f2ec;
+  --secondary-color: #0e3746;
+  --accent-color: #be2623;
 }
 
 h1 {
-  font-size: clamp(1rem, 0.5rem + 1.5vw, 2rem);
+  font-size: clamp(1.3rem, 0.5rem + 1.5vw, 2rem);
+}
+
+h2 {
+  font-size: clamp(1rem, 0.5rem + 1vw, 1.7rem);
+}
+
+p {
+  font-size: clamp(0.7rem, 0.5rem + 0.7vw, 1.5rem);
 }
 
 header {
   padding: var(--standard-padding);
-  margin: var(--standard-margin);
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  align-items: center;
 }
 
 main {
@@ -32,32 +55,163 @@ main {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding: var(--standard-padding);
+  align-self: center;
 }
 
 .score-board {
   display: flex;
+  align-items: center;
   gap: var(--standard-gap);
+  background-color: var(--accent-color);
+  padding: var(--small-padding);
+  border-radius: 10px;
 }
 
 .cards-container {
   width: 100%;
-  max-width: 640px;
+  max-width: 800px;
   display: grid;
   gap: var(--standard-gap);
-  grid-template-columns: repeat(4, 1fr);
-  padding: var(--standard-padding);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: var(--small-padding);
+  align-items: stretch;
+  grid-auto-rows: 1fr;
 }
 
 .cards-container.loading {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  transform: translateY(100%);
 }
 
 .card-button {
   width: 100%;
+  height: 100%;
+  border: none;
+  padding: var(--standard-padding);
+  background-color: var(--primary-color);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 200ms ease-in-out;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.card-button:hover {
+  transform: scale(1.1);
 }
 
 .pokeman-image {
   width: 100%;
+}
+
+#message-modal {
+  align-self: center;
+  justify-self: center;
+  padding: var(--standard-padding);
+  border: none;
+  border-radius: 10px;
+}
+
+.message-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--standard-gap);
+}
+
+.message-container > p {
+  font-weight: 700;
+  font-size: clamp(1rem, 0.5rem + 1vw, 1.7rem);
+}
+
+.restart-button {
+  padding: var(--small-padding);
+  background-color: var(--accent-color);
+  border: 2px solid var(--accent-color);
+  color: var(--primary-color);
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.restart-button:hover {
+  background-color: var(--primary-color);
+  color: var(--accent-color);
+}
+
+.instruction-box {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: var(--accent-color);
+  padding: var(--small-padding);
+  color: var(--primary-color);
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.3rem, 0.5rem + 1.5vw, 2rem);
+  font-weight: 900;
+}
+
+.lds-ripple {
+  color: #0e3746;
+}
+.lds-ripple,
+.lds-ripple div {
+  box-sizing: border-box;
+}
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid currentColor;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 8px;
+    height: 8px;
+    opacity: 0;
+  }
+  4.9% {
+    top: 36px;
+    left: 36px;
+    width: 8px;
+    height: 8px;
+    opacity: 0;
+  }
+  5% {
+    top: 36px;
+    left: 36px;
+    width: 8px;
+    height: 8px;
+    opacity: 1;
+  }
+  100% {
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    opacity: 0;
+  }
 }
