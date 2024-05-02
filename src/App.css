@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  max-width: 1280px;
+}
+
+:root {
+  --standard-gap: clamp(1rem, 0.2rem + 2vw, 2rem);
+  --standard-padding: clamp(1rem, 0.2rem + 2vw, 2rem);
+  --standard-margin: clamp(1rem, 0.2rem + 2vw, 2rem);
+}
+
+h1 {
+  font-size: clamp(1rem, 0.5rem + 1.5vw, 2rem);
+}
+
+header {
+  padding: var(--standard-padding);
+  margin: var(--standard-margin);
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  width: 100%;
+  max-width: 1280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.score-board {
+  display: flex;
+  gap: var(--standard-gap);
+}
+
+.cards-container {
+  width: 100%;
+  max-width: 640px;
+  display: grid;
+  gap: var(--standard-gap);
+  grid-template-columns: repeat(4, 1fr);
+  padding: var(--standard-padding);
+}
+
+.cards-container.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-button {
+  width: 100%;
+}
+
+.pokeman-image {
+  width: 100%;
+}
